@@ -21,3 +21,35 @@ body{
   /* margin-bottom: 50px;
   padding: 13px 0; */
 }
+.Buy-button{
+  width: 100%;
+  background: none;
+  border: 2px solid  #01b9ff;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+  text-transform: uppercase;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.Sell-button{
+  width: 100%;
+  background: none;
+  border: 2px solid  #01b9ff;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+  text-transform: uppercase;
+}

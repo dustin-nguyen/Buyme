@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" type="text/css"href="css/home.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home Page</title>
 </head>
@@ -25,7 +25,7 @@
 		Statement stmt = con.createStatement();
 
 		//Get parameters from signuplogic.jsp
-		String Username = String.valueOf(request.getAttribute("Username"));
+		String Username = String.valueOf(session.getAttribute("Username"));
 	//	out.print(Username); //debug
 		//Make an select statement for the account table:
 		String select = "SELECT * FROM account WHERE username = "+'"'+Username+'"' ;
@@ -46,10 +46,13 @@
 				<h1>
 				Welcome <%=name%> (<%=type%>)
 				</h1>
+									<a href="signup.jsp" class="Buy-button" >Buy</a>
 				<div class="controls">
-					<a href="signin.jsp" class="Button-link" type="submit">Sign Out</a>
+
+					<a href="logout.jsp" class="Button-link">Sign Out</a>
 				</div>
 			</div>
+
        		 <%
 
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.

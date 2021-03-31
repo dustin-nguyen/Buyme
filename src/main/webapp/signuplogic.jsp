@@ -39,13 +39,13 @@
 		ps.executeUpdate();
 
 		out.print("insert succeeded");
-		//send username to welcome.jsp
-		request.setAttribute("Username",Username);
-		RequestDispatcher rs = request.getRequestDispatcher("homepage.jsp"); //the page you want to send your value
-		rs.forward(request,response);
-		%>
-		<a href="homepage.jsp"  type="submit">Welcome Page</a>
-		<%
+		session.setAttribute("Username", Username);
+		response.sendRedirect("homepage.jsp");
+		//send username to homepage.jsp
+		//request.setAttribute("Username",Username);
+		//RequestDispatcher rs = request.getRequestDispatcher("homepage.jsp"); //the page you want to send your value
+		//rs.forward(request,response);
+		
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
 	} catch (Exception ex) {

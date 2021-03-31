@@ -37,13 +37,17 @@
 				<a href="signin.jsp"  type="submit">invaild username or password</a>
 				<%
 			}else{
+				session.setAttribute("Username", Username);
+				response.sendRedirect("homepage.jsp");
 				// move the pointer to the first row, before asking for data:
-				result.beforeFirst();
-				result.next();
+				//result.beforeFirst();
+				//result.next();
+				
 				//send username to welcome.jsp
-				request.setAttribute("Username",Username);
-				RequestDispatcher rs = request.getRequestDispatcher("homepage.jsp"); //the page you want to send your value
-				rs.forward(request,response);
+				//request.setAttribute("Username",Username);
+
+				//RequestDispatcher rs = request.getRequestDispatcher("homepage.jsp"); //the page you want to send your value
+				//rs.forward(request,response);
 			}
 			
 

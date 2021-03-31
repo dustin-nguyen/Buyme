@@ -32,5 +32,6 @@ CREATE TABLE `account` (
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
 INSERT INTO `account`(`username`, `password`,`type`,`name`) VALUES ('admin','12345','admin','Duc'),('cusrep1','12345','representative','John'),('cusrep2','12345','representative','Sam');
+INSERT INTO `account`(`username`, `password`,`type`,`name`,`email`) VALUES ('duc','12345','customers','Duc','ducrias@gmail.com');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
