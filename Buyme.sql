@@ -35,3 +35,86 @@ INSERT INTO `account`(`username`, `password`,`type`,`name`) VALUES ('admin','123
 INSERT INTO `account`(`username`, `password`,`type`,`name`,`email`) VALUES ('duc','12345','customers','Duc','ducrias@gmail.com');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
+
+-- Table structure for table `item`
+DROP TABLE IF EXISTS `item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+
+CREATE TABLE `item` (
+  `itemID` INT AUTO_INCREMENT Primary key ,
+  `name`  varchar(50)  Not NULL,
+  `type` ENUM ('laptop','phone','tablet') Not NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Table structure for table `sell`
+DROP TABLE IF EXISTS `sell`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+-- Date=YYYY-MM-DD
+CREATE TABLE `sell` (
+  `itemID`  INT  Not NULL,
+  `seller`  varchar(50)  Not NULL,
+  `type` ENUM ('laptop','phone','tablet') Not NULL,
+  `increment` INT NOT NULL,
+  `inital_price` INT NOT NULL,
+  `secert_price` INT NOT NULL,
+  `close_date` Date NOT NULL,
+  PRIMARY KEY (`itemID`,`seller`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Table structure for table `historyOfBid`
+DROP TABLE IF EXISTS `historyOfBid`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+-- Date=YYYY-MM-DD
+CREATE TABLE `historyOfBid` (
+  `itemID`  INT  Not NULL,
+  `buyer`  varchar(50)  Not NULL,
+  `type` ENUM ('laptop','phone','tablet') Not NULL,
+  `price` INT NOT NULL,
+  `date` Date NOT NULL,
+  PRIMARY KEY (`itemID`,`buyer`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+-- Table structure for table `wishList`
+DROP TABLE IF EXISTS `wishList`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+-- Date=YYYY-MM-DD
+CREATE TABLE `wishList` (
+  `itemID`  INT  Not NULL,
+  `buyer`  varchar(50)  Not NULL,
+  PRIMARY KEY (`itemID`,`buyer`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+-- Table structure for table `question`
+DROP TABLE IF EXISTS `question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+-- Date=YYYY-MM-DD
+CREATE TABLE `question` (
+   `questID` INT AUTO_INCREMENT Primary key ,
+  `username`  varchar(50)  Not NULL,
+   `question`  varchar(500)  Not NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Table structure for table `answer`
+DROP TABLE IF EXISTS `answer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+-- Date=YYYY-MM-DD
+CREATE TABLE `answer` (
+   `questID` int Not null Primary key,
+  `cusrep`  varchar(50)  Not NULL,
+   `answer`  varchar(500)  Not NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
