@@ -46,9 +46,16 @@
 				<h1>
 				Welcome <%=name%> (<%=type%>)
 				</h1>
-									<a href="signup.jsp" class="Buy-button" >Buy</a>
+									
 				<div class="controls">
-
+					<a href="signup.jsp" class="Button-link" >auto bid</a>
+					<br>
+					<a href="signup.jsp" class="Button-link" >sell</a>
+					<br>
+					<a href="signup.jsp" class="Button-link" >Search</a>
+					<br>
+					<a href="signup.jsp" class="Button-link" >Buy</a>
+					<br>
 					<a href="logout.jsp" class="Button-link">Sign Out</a>
 				</div>
 			</div>
