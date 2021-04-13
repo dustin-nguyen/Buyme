@@ -38,7 +38,7 @@
 				<%
 			}else{
 				session.setAttribute("Username", Username);
-				response.sendRedirect("homepage.jsp");
+				response.sendRedirect("homePageLogic.jsp");
 				// move the pointer to the first row, before asking for data:
 				//result.beforeFirst();
 				//result.next();

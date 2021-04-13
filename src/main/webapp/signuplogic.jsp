@@ -40,7 +40,7 @@
 
 		out.print("insert succeeded");
 		session.setAttribute("Username", Username);
-		response.sendRedirect("homepage.jsp");
+		response.sendRedirect("homePageLogic.jsp");
 		//send username to homepage.jsp
 		//request.setAttribute("Username",Username);
 		//RequestDispatcher rs = request.getRequestDispatcher("homepage.jsp"); //the page you want to send your value

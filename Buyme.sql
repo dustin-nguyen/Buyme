@@ -44,6 +44,7 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `itemID` INT AUTO_INCREMENT Primary key ,
   `name`  varchar(50)  Not NULL,
+  `current_price` INT NOT NULL,
   `type` ENUM ('laptop','phone','tablet') Not NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -54,7 +55,7 @@ DROP TABLE IF EXISTS `sell`;
 /*!40101 SET character_set_client = utf8 */;
 -- Date=YYYY-MM-DD
 CREATE TABLE `sell` (
-  `itemID`  INT  Not NULL,
+  `itemID` INT AUTO_INCREMENT Primary key ,
   `seller`  varchar(50)  Not NULL,
   `type` ENUM ('laptop','phone','tablet') Not NULL,
   `increment` INT NOT NULL,
