@@ -31,7 +31,7 @@
 					<br>
 					<a href="signup.jsp" class="Button-link" >auto bid</a>
 					<br>
-					<a href="signup.jsp" class="Button-link" >sell</a>
+					<a href="sell.jsp" class="Button-link" >sell</a>
 					<br>
 					<a href="signup.jsp" class="Button-link" >Search</a>
 					<br>

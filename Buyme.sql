@@ -1,4 +1,3 @@
-
 CREATE DATABASE  IF NOT EXISTS `Buyme` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `Buyme`;
 -- Database: Buyme
@@ -40,31 +39,20 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-
+-- Date=YYYY-MM-DD
 CREATE TABLE `item` (
-  `itemID` INT AUTO_INCREMENT Primary key ,
+  `itemID` INT AUTO_INCREMENT Primary key,
   `name`  varchar(50)  Not NULL,
   `current_price` INT NOT NULL,
-  `type` ENUM ('laptop','phone','tablet') Not NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
--- Table structure for table `sell`
-DROP TABLE IF EXISTS `sell`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
--- Date=YYYY-MM-DD
-CREATE TABLE `sell` (
-  `itemID` INT AUTO_INCREMENT Primary key ,
-  `seller`  varchar(50)  Not NULL,
   `type` ENUM ('laptop','phone','tablet') Not NULL,
   `increment` INT NOT NULL,
   `inital_price` INT NOT NULL,
-  `secert_price` INT NOT NULL,
+  `secret_price` INT NOT NULL,
   `close_date` Date NOT NULL,
-  PRIMARY KEY (`itemID`,`seller`)
+  `seller`  varchar(50)  Not NULL REFERENCES account(username)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 -- Table structure for table `historyOfBid`
 DROP TABLE IF EXISTS `historyOfBid`;
@@ -72,9 +60,8 @@ DROP TABLE IF EXISTS `historyOfBid`;
 /*!40101 SET character_set_client = utf8 */;
 -- Date=YYYY-MM-DD
 CREATE TABLE `historyOfBid` (
-  `itemID`  INT  Not NULL,
+  `itemID`  INT  Not NULL  REFERENCES item(itemID) ,
   `buyer`  varchar(50)  Not NULL,
-  `type` ENUM ('laptop','phone','tablet') Not NULL,
   `price` INT NOT NULL,
   `date` Date NOT NULL,
   PRIMARY KEY (`itemID`,`buyer`)
@@ -88,7 +75,7 @@ DROP TABLE IF EXISTS `wishList`;
 /*!40101 SET character_set_client = utf8 */;
 -- Date=YYYY-MM-DD
 CREATE TABLE `wishList` (
-  `itemID`  INT  Not NULL,
+  `itemID`  INT  Not NULL  REFERENCES item(itemID),
   `buyer`  varchar(50)  Not NULL,
   PRIMARY KEY (`itemID`,`buyer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -113,7 +100,7 @@ DROP TABLE IF EXISTS `answer`;
 /*!40101 SET character_set_client = utf8 */;
 -- Date=YYYY-MM-DD
 CREATE TABLE `answer` (
-   `questID` int Not null Primary key,
+   `questID` int Not null Primary key REFERENCES question(questID),
   `cusrep`  varchar(50)  Not NULL,
    `answer`  varchar(500)  Not NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
