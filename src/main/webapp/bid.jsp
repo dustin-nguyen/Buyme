@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css"href="css/home.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Customer Home Page</title>
+<title>Bid Page</title>
 </head>
 <body style="background-color:black;
 			color:white; 
@@ -17,28 +17,19 @@
 <%
 	try {
 			String username = String.valueOf(session.getAttribute("Username"));
-			String name = String.valueOf(session.getAttribute("name"));
-			String type = String.valueOf(session.getAttribute("type"));
-			
+			int itemID = Integer.parseInt(request.getParameter("itemID"));
 			%>
-			<div class="welcome">
+			<div class="login-box">
 				<h1>
-				Welcome <%=name%> (<%=type%>)
+				User <%=username%> 
 				</h1>
-									
+					<h2>
+					ItemID <%=itemID%> 
+					</h2>				
 				<div class="controls">
-					<a href="signup.jsp" class="Button-link" >Buylist</a>
-					<br>
-					<a href="signup.jsp" class="Button-link" >auto bid</a>
-					<br>
-					<a href="sell.jsp" class="Button-link" >Sell Item</a>
-					<br>
-					<a href="search.jsp" class="Button-link" >Search</a>
-					<br>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
 			</div>
-
        		 <%
 
 		
