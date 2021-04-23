@@ -35,6 +35,8 @@
 					<br>
 					<a href="search.jsp" class="Button-link" >Search</a>
 					<br>
+					<a href="wishlistlist.jsp" class="Button-link">Wishlist</a>
+					<br>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
 			</div>
