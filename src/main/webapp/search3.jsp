@@ -10,6 +10,14 @@
 <title>Sign In Logic</title>
 </head>
 <body>
+	<div class="controls">
+		<a href="signup.jsp" class="Button-link">Buylist</a> <a
+			href="signup.jsp" class="Button-link">auto bid</a> <a
+			href="sell.jsp" class="Button-link">Sell Item</a> <a
+			href="search.jsp" class="Button-link">Search</a> <a
+			href="wishlistlist.jsp" class="Button-link">Wishlist</a> <a
+			href="logout.jsp" class="Button-link">Log Out</a>
+	</div>
 	<%
 	try {
 
