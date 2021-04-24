@@ -19,7 +19,7 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 
-		//Get parameters from the HTML form at the signup.jsp
+		//Get parameters from the HTML form at the sell.jsp
 		int secretPrice = Integer.parseInt(request.getParameter("secretPrice"));
 		int increment = Integer.parseInt(request.getParameter("increment"));
 		int initalPrice = Integer.parseInt(request.getParameter("initalPrice"));
@@ -47,12 +47,7 @@
 		ps.executeUpdate();
 
 		out.print("insert succeeded");
-		out.print(type);
-		//response.sendRedirect("homePageLogic.jsp");
-		//send username to homepage.jsp
-		//request.setAttribute("Username",Username);
-		//RequestDispatcher rs = request.getRequestDispatcher("homepage.jsp"); //the page you want to send your value
-		//rs.forward(request,response);
+		response.sendRedirect("customerHomePage.jsp");
 		
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();

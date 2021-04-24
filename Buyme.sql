@@ -64,7 +64,7 @@ CREATE TABLE `historyOfBid` (
   `buyer`  varchar(50)  Not NULL,
   `price` INT NOT NULL,
   `date` Date NOT NULL,
-  PRIMARY KEY (`itemID`,`buyer`)
+  PRIMARY KEY (`itemID`,`buyer`,`price`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

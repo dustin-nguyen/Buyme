@@ -32,7 +32,7 @@ public class ApplicationDB {
 		try {
 			//Create a connection to your DB
 			// change root= name of the account on the local mysql, 123456 is the password
-			connection = DriverManager.getConnection(connectionUrl,"root", "cs336");
+			connection = DriverManager.getConnection(connectionUrl,"root", "123456");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
