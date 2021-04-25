@@ -80,7 +80,7 @@
 		out.print(ex);
 		out.print("insert failed");
 	%>
-	<a href="homePageLogic" type="submit">Back to HomePage</a>
+	<a href="customerHomePage.jsp" type="submit">Back to HomePage</a>
 	<%
 	}
 	%>

@@ -53,6 +53,18 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+-- Table structure for table `feature`
+DROP TABLE IF EXISTS `feature`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+
+CREATE TABLE `feature` (
+  `itemID` INT  Not NULL primary key  REFERENCES item(itemID),
+  `brand` ENUM ('Apple','Samsung','Google','Dell','Acer') Not NULL,
+  `condition` ENUM ('Excellent','Good','Normal','Bad') Not NULL,
+  `screen_size`	FLOAT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Table structure for table `historyOfBid`
 DROP TABLE IF EXISTS `historyOfBid`;
@@ -61,7 +73,7 @@ DROP TABLE IF EXISTS `historyOfBid`;
 -- Date=YYYY-MM-DD
 CREATE TABLE `historyOfBid` (
   `itemID`  INT  Not NULL  REFERENCES item(itemID) ,
-  `buyer`  varchar(50)  Not NULL,
+  `buyer`  varchar(50)   Not NULL REFERENCES account(username),
   `price` INT NOT NULL,
   `date` Date NOT NULL,
   PRIMARY KEY (`itemID`,`buyer`,`price`)
@@ -76,14 +88,18 @@ DROP TABLE IF EXISTS `wishList`;
 -- Date=YYYY-MM-DD
 CREATE TABLE `wishList` (
   `itemID`  INT  Not NULL  REFERENCES item(itemID),
-  `buyer`  varchar(50)  Not NULL,
+  `buyer`  varchar(50)  Not NULL REFERENCES account(username),
   `message` varchar(100) NOT NULL,
   PRIMARY KEY (`itemID`,`buyer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+-- Table structure for table `historyOfBid`
+DROP TABLE IF EXISTS `alert`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `alert` (
-  `buyer`  varchar(50)  Not NULL,
+  `buyer`  varchar(50)   Not NULL REFERENCES account(username),
   `message` varchar(100) NOT NULL,
   PRIMARY KEY (`buyer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -96,7 +112,7 @@ DROP TABLE IF EXISTS `question`;
 -- Date=YYYY-MM-DD
 CREATE TABLE `question` (
    `questID` INT AUTO_INCREMENT Primary key ,
-  `username`  varchar(50)  Not NULL,
+  `username`  varchar(50)   Not NULL REFERENCES account(username),
    `question`  varchar(500)  Not NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
