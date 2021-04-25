@@ -12,6 +12,8 @@
 <body
 	style="background-color: black; color: white; margin: 0px; padding: 0px; font-family: 'Righteous', cursive;">
 	<div class="controls">
+	<a href="customerHomePage.jsp" class="Button-link" type="submit">Back
+				to Home Page</a>
 		<a href="sell.jsp"
 			class="Button-link">Sell Item</a> <a href="search.jsp"
 			class="Button-link">Search</a> <a href="wishlistlist.jsp"
@@ -111,6 +113,8 @@
 			<div class="textbox">
 				<tr>
 					<td>Auto Bid</td>
+					<td><input type="hidden" name="price"
+				value=<%=current_price%> /></td>
 					<td><input type="number" name="upperlimit"
 						placeholder="Enter the amount " min=<%=increment + current_price%>
 						required></td>

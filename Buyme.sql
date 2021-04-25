@@ -130,5 +130,19 @@ CREATE TABLE `answer` (
   `cusrep`  varchar(50)  Not NULL,
    `answer`  varchar(500)  Not NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `automation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+-- Date=YYYY-MM-DD
+CREATE TABLE `automation` (
+   `itemID` INT  Not NULL  REFERENCES item(itemID),
+  `buyer`  varchar(50)  Not NULL references account(username),
+   `price`  int  Not NULL,
+   `upper_limit` int NOT NULL,
+   `increment` int NOT NULL,
+   primary key(`buyer`, `itemID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -25,6 +25,7 @@
 	</form>
 	<form method="post" action="searchword.jsp">
 		<h1>Search by name:</h1>
+		<input type="text" name="qname"> <br>
 	<input type="submit" value="submit" />
 	</form>
 </body>
