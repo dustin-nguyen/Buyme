@@ -24,9 +24,7 @@
 		String username = String.valueOf(session.getAttribute("Username"));
 		String t="SELECT * from alert WHERE buyer=" + '"' + username + '"';
 		ResultSet result = stmt.executeQuery(t);
-		int count=0;
 		while (result.next()) {
-			out.print(count);
 			out.print("<p>");
 			out.print(result.getString("message"));
 			out.print("</p>");
