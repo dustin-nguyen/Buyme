@@ -12,12 +12,12 @@
 <body
 	style="background-color: black; color: white; margin: 0px; padding: 0px; font-family: 'Righteous', cursive;">
 	<div class="controls">
-		<a href="signup.jsp" class="Button-link">Buylist</a> <a
-			href="signup.jsp" class="Button-link">auto bid</a> <a href="sell.jsp"
+		<a href="sell.jsp"
 			class="Button-link">Sell Item</a> <a href="search.jsp"
 			class="Button-link">Search</a> <a href="wishlistlist.jsp"
 			class="Button-link">Wishlist</a>
 	</div>
+	<br>
 	<%
 	try {
 		String username = String.valueOf(session.getAttribute("Username"));
@@ -86,16 +86,35 @@
 				<tr>
 					<td>Bid</td>
 					<td><input type="number" name="price"
-						placeholder="Enter the amount " min=<%=increment+current_price%> required></td>
+						placeholder="Enter the amount " min=<%=increment + current_price%>
+						required></td>
 				</tr>
 			</div>
-			<input type="hidden" name="itemID" value=<%=itemID%> /> 
-			 <input type="submit" class ="Sell-button" value="Place Bid" />
-			 </form>
-			<div class="controls">
-				<a href="customerHomePage.jsp" class="Button-link">Home Page</a> <br>
-				<a href="logout.jsp" class="Button-link">Log Out</a>
+			<input type="hidden" name="itemID" value=<%=itemID%> /> <input
+				type="submit" class="Sell-button" value="Place Bid" />
+		</form>
+		<form method="post" action="autobidLogic.jsp">
+			<div class="textbox">
+				<tr>
+					<td>Auto Bid</td>
+					<td><input type="number" name="upperlimit"
+						placeholder="Enter the amount " min=<%=increment + current_price%>
+						required></td>
+				</tr>
 			</div>
+			<input type="hidden" name="itemID" value=<%=itemID%> /> <input
+				type="submit" class="Sell-button" value="AutoBid" />
+		</form>
+		<form method="post" action="historybid.jsp">
+			<button class="Sell-button" type="submit" name="h" value=<%=result.getString("itemID")%>>Previous Bids</button>
+		</form>
+		<form method="post" action="simItems.jsp">
+			<button class="Sell-button" type="submit" name="sim" value=<%=result.getString("itemID")%>>Similiar Items</button>
+		</form>
+		<div class="controls">
+			<a href="customerHomePage.jsp" class="Button-link">Home Page</a> <br>
+			<a href="logout.jsp" class="Button-link">Log Out</a>
+		</div>
 	</div>
 	<%
 	}

@@ -77,10 +77,17 @@ DROP TABLE IF EXISTS `wishList`;
 CREATE TABLE `wishList` (
   `itemID`  INT  Not NULL  REFERENCES item(itemID),
   `buyer`  varchar(50)  Not NULL,
+  `message` varchar(100) NOT NULL,
   PRIMARY KEY (`itemID`,`buyer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+CREATE TABLE `alert` (
+  `buyer`  varchar(50)  Not NULL,
+  `message` varchar(100) NOT NULL,
+  PRIMARY KEY (`buyer`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Table structure for table `question`
 DROP TABLE IF EXISTS `question`;

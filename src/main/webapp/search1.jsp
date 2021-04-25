@@ -55,11 +55,10 @@
 		if (result.next()) {
 	%>
 	<div class="controls">
-		<a href="signup.jsp" class="Button-link">Buylist</a> <a
-			href="signup.jsp" class="Button-link">auto bid</a> <a
+		<a
 			href="sell.jsp" class="Button-link">Sell Item</a> <a
-			href="search.jsp" class="Button-link">Search</a> <a
-			href="wishlistlist.jsp" class="Button-link">Wishlist</a> <a
+			href="search.jsp" class="Button-link">Search Again</a> <a
+			href="alert.jsp" class="Button-link">Alert</a> <a
 			href="logout.jsp" class="Button-link">Log Out</a>
 	</div>
 	<p>Sort by:</p>
@@ -91,15 +90,9 @@
 	out.print(result.getString("current_price"));
 	out.print("</td>");
 	out.print("<td>");
-	//Print out current beer name:
 	out.print(result.getString("close_date"));
 	out.print("</td>");
 	out.print("<td>");
-	%><form method="get" action="wishlist.jsp">
-		<button type="submit" name="wl" value=<%=result.getString("itemID")%>>Add
-			to Wishlist</button>
-	</form>
-	<%
 	out.print("</td>");
 	out.print("<td>");
 	%><form action="bid.jsp" method="post">
@@ -113,8 +106,7 @@
 	} else {
 	%>
 	<div class="controls">
-		<a href="signup.jsp" class="Button-link">Buylist</a> <a
-			href="signup.jsp" class="Button-link">auto bid</a> <a
+		<a
 			href="sell.jsp" class="Button-link">Sell Item</a> <a
 			href="search.jsp" class="Button-link">Search</a> <a
 			href="wishlistlist.jsp" class="Button-link">Wishlist</a> <a

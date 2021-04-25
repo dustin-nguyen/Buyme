@@ -21,91 +21,62 @@
 
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
-
+		String itemID = request.getParameter("h");
 		//Make a SELECT query from the sells table 
-		String str = "SELECT * FROM item ";
+		String temp2 = "Select * from historyofbid WHERE itemID=" + itemID + " ORDER BY price DESC";
 		//Run the query against the database.
-		ResultSet result = stmt.executeQuery(str);
+		ResultSet result = stmt.executeQuery(temp2);
 		//Make an HTML table to show the results in:
 	%>
 	<div class="controls">
 		 <a href="sell.jsp"
 			class="Button-link">Sell Item</a> <a href="search.jsp"
 			class="Button-link">Search</a> <a href="alert.jsp"
-			class="Button-link">Wishlist</a> <a href="logout.jsp"
+			class="Button-link">Alert</a> <a href="logout.jsp"
 			class="Button-link">Log Out</a>
 	</div>
+	<h1>Item <%=itemID%></h1>
 	<%
 	out.print("<table>");
-	//make a row
 	out.print("<tr>");
-	//make a column
 	out.print("<td>");
-	//print out column header
-	out.print("itemID");
+	out.print("Name");
 	out.print("</td>");
-	//make a column
 	out.print("<td>");
-	out.print("name");
+	out.print("Price");
 	out.print("</td>");
-	//make a column
 	out.print("<td>");
-	out.print("type");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("increment");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("price");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("option");
+	out.print("Date");
 	out.print("</td>");
 	out.print("</tr>");
-	//parse out the results
 	while (result.next()) {
-		//make a row
 		out.print("<tr>");
-		//make a column
 		out.print("<td>");
-		//Print out current itemID:
-		int temp = result.getInt("itemID");
-		out.print(temp);
+		%>
+		<a href="sellersbuyerslist.jsp"
+				class="Button-link" value=<%= result.getString("buyer") %>></a>
+		<%
+		out.print(result.getString("buyer"));
 		out.print("</td>");
 		out.print("<td>");
-		//Print out current item's name:
-		out.print(result.getString("name"));
+		out.print(result.getString("price"));
 		out.print("</td>");
 		out.print("<td>");
-		//Print out current type
-		out.print(result.getString("type"));
+		//Print out current beer name:
+		out.print(result.getString("date"));
 		out.print("</td>");
-		out.print("<td>");
-		//Print out current increment
-		out.print(result.getString("increment"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out current price
-		out.print(result.getString("current_price"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out option
-	%>
-	<form action="bid.jsp" method="post">
-		<input type="hidden" name="itemID" value=<%=temp%> /> <input
-			type="submit" value="Bid" />
-	</form>
-	<%
-	out.print("</td>");
-	out.print("</tr>");
+		out.print("</tr>");
 	}
 	out.print("</table>");
+	//String temp = "Select * from item WHERE type=" + result.getString("type");
+	//ResultSet result2 = stmt.executeQuery(temp);
+	//while (result2.next()) {
+		//out.print("Hi");
+	//}
 	//close the connection.
 	con.close();
 	} catch (Exception e) {
+		
 	}
 	%>
 </body>

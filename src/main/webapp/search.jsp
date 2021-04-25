@@ -8,14 +8,18 @@
 </head>
 <body>
 	<div class="controls">
-		<a href="signup.jsp" class="Button-link">Buylist</a> <a
-			href="signup.jsp" class="Button-link">Auto bid</a> <a
+		<a
 			href="sell.jsp" class="Button-link">Sell Item</a> <a
-			href="wishlistlist.jsp" class="Button-link">Wishlist</a> <a
+			href="alert.jsp" class="Button-link">Alert</a> <a
 			href="logout.jsp" class="Button-link">Log Out</a>
 	</div>
 	<h1>Search all</h1>
 	<form method="post" action="search2.jsp">
+		<input type="submit" value="submit" />
+	</form>
+	<h1>Search user auctions</h1>
+	<form method="post" action="sellersbuyerslist.jsp">
+		<input type="text" name="bsell"> <br>
 		<input type="submit" value="submit" />
 	</form>
 	<h1>Search by attributes</h1>

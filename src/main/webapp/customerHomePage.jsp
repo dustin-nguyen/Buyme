@@ -27,15 +27,11 @@
 				</h1>
 									
 				<div class="controls">
-					<a href="signup.jsp" class="Button-link" >Buylist</a>
-					<br>
-					<a href="signup.jsp" class="Button-link" >auto bid</a>
-					<br>
 					<a href="sell.jsp" class="Button-link" >Sell Item</a>
 					<br>
 					<a href="search.jsp" class="Button-link" >Search</a>
 					<br>
-					<a href="wishlistlist.jsp" class="Button-link">Wishlist</a>
+					<a href="alert.jsp" class="Button-link">Alerts</a>
 					<br>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
