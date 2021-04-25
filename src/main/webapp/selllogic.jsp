@@ -30,8 +30,8 @@
 
 		String to_date= "TO_DATE("+closeDate+",'YYYY-MM-DD')";
 		//Make an insert statement for the item table:
-		String insert = "INSERT INTO item(name,current_price,increment,inital_price,secret_price,seller,close_date,type)"
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String insert = "INSERT INTO item(name,current_price,increment,inital_price,secret_price,seller,close_date,type,checkwin)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert,Statement.RETURN_GENERATED_KEYS);
 
@@ -44,6 +44,7 @@
 		ps.setString(6, seller);
 		ps.setString(7, closeDate);
 		ps.setString(8, type);
+		ps.setInt(9,0);
 		ps.executeUpdate();
 
 		out.print("insert item succeeded");
@@ -76,7 +77,7 @@
 		String wishlist="SELECT * from wishlist where storage_size="+"\""+storageSize+"\""+"AND screen_size="+"\""+screenSize+"\""+"AND brand="+"\""+brand+"\""+"AND name="+"\""+name+"\""+"AND type="+"\""+type+"\"";
 		
 		String message="An item you are interested in is now on sale!";
-		out.print(wishlist);
+		//out.print(wishlist);
 		ResultSet result = stmt.executeQuery(wishlist);
 		while (result.next()){
 			String insertFeature2 = "INSERT INTO alert(buyer,message) VALUES (?, ?)";

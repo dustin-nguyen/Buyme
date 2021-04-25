@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Search</title>
+<title>Similar Items in the Past Month</title>
 </head>
 <body>
 	<%
@@ -36,11 +36,19 @@
 		//Make an HTML table to show the results in:
 	%>
 	<div class="controls">
-		<a href="sell.jsp"
-			class="Button-link">Sell Item</a> <a href="search.jsp"
-			class="Button-link">Search</a> <a href="wishlistlist.jsp"
-			class="Button-link">Wishlist</a> <a href="logout.jsp"
-			class="Button-link">Log Out</a>
+	<a href="customerHomePage.jsp" class="Button-link" type="submit">Back
+				to Home Page</a>
+		<a href="sell.jsp" class="Button-link" >Sell Item</a>
+					<br>
+					<a href="search.jsp" class="Button-link" >Search</a>
+					<br>
+					<a href="wishlistlist.jsp" class="Button-link" >Wishlist</a>
+					<br>
+					<a href="question.jsp" class="Button-link" >Ask question</a>
+					<br>
+					<a href="alert.jsp" class="Button-link" >Alert</a>
+					<br>
+					<a href="logout.jsp" class="Button-link">Log Out</a>
 	</div>
 	<h1>Item <%=itemID%></h1>
 	<%

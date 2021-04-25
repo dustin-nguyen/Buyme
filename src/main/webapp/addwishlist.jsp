@@ -7,7 +7,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sign In Logic</title>
+<title>Wishlist</title>
 </head>
 <body>
 	<%

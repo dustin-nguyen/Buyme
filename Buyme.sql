@@ -49,7 +49,9 @@ CREATE TABLE `item` (
   `inital_price` INT NOT NULL,
   `secret_price` INT NOT NULL,
   `close_date` Date NOT NULL,
-  `seller`  varchar(50)  Not NULL REFERENCES account(username)
+  `seller`  varchar(50)  Not NULL REFERENCES account(username),
+  `buyer`  varchar(50),
+  `checkwin` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

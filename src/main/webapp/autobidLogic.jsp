@@ -32,8 +32,16 @@
 			increment = Integer.parseInt(result.getString("increment"));
 		}
 		// get current date
-
-        if(price < upperlimit)
+		String insert1 = "INSERT INTO automation(itemID,buyer,price,upper_limit,increment)" + "VALUES (?, ?, ?, ?,?)";
+		PreparedStatement pl = con.prepareStatement(insert1);
+		pl.setInt(1, itemID); 
+		pl.setString(2, buyer);
+		pl.setInt(3, price);
+		pl.setInt(4, upperlimit);
+		pl.setInt(5,increment);
+		pl.executeUpdate(); 
+		
+        while(price < upperlimit)
         {
             price+=increment;
            	Date dNow = new Date( );
@@ -59,11 +67,7 @@
     		PreparedStatement up = con.prepareStatement(update);
 
     		up.executeUpdate();
-    		
     		out.print("insert succeeded");
-        }
-        else{
-        	//alert 
         }
 		
 		//Make an update statement for the item table:

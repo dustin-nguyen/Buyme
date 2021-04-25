@@ -6,8 +6,19 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Wishlist</title>
+<title>Wishlist Form</title>
 </head>
+<a href="customerHomePage.jsp" class="Button-link" type="submit">Back
+				to Home Page</a>
+		<a href="sell.jsp" class="Button-link" >Sell Item</a>
+					<br>
+					<a href="search.jsp" class="Button-link" >Search</a>
+					<br>
+					<a href="question.jsp" class="Button-link" >Ask question</a>
+					<br>
+					<a href="alert.jsp" class="Button-link" >Alert</a>
+					<br>
+					<a href="logout.jsp" class="Button-link">Log Out</a>
 <body>
 	<div class="sell-box">
 		<h1>Add to Wishlist</h1>
