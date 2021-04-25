@@ -19,7 +19,11 @@
 			String username = String.valueOf(session.getAttribute("Username"));
 			String name = String.valueOf(session.getAttribute("name"));
 			String type = String.valueOf(session.getAttribute("type"));
-			
+			ApplicationDB db = new ApplicationDB();
+			Connection con = db.getConnection();
+			Statement stmt = con.createStatement();
+			String increments = "SELECT count(*) from alert where buyer="+"\""+username+"\"";
+			ResultSet result = stmt.executeQuery(increments);
 			%>
 			<div class="welcome">
 				<h1>

@@ -73,6 +73,19 @@
 		//out.print("\n");
 		p.executeUpdate();
 		
+		String wishlist="SELECT * from wishlist where storage_size="+"\""+storageSize+"\""+"AND screen_size="+"\""+screenSize+"\""+"AND brand="+"\""+brand+"\""+"AND name="+"\""+name+"\""+"AND type="+"\""+type+"\"";
+		
+		String message="An item you are interested in is now on sale!";
+		out.print(wishlist);
+		ResultSet result = stmt.executeQuery(wishlist);
+		while (result.next()){
+			String insertFeature2 = "INSERT INTO alert(buyer,message) VALUES (?, ?)";
+			PreparedStatement pp = con.prepareStatement(insertFeature2);
+			pp.setString(1, result.getString("buyer")); 
+			pp.setString(2, message);
+			pp.executeUpdate();
+		}
+		
 		out.print("insert feature succeeded");
 		response.sendRedirect("customerHomePage.jsp");
 		

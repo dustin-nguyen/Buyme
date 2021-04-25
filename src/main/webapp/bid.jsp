@@ -90,9 +90,9 @@
 		if (ft.format(a).compareTo(to_date)<0){
 			out.print("Expired");
 		}
-		else if(result.getString("seller").equals(username)){
-			out.print("This is your own auction");
-		}
+		//else if(result.getString("seller").equals(username)){
+			//out.print("This is your own auction");
+		//}
 		else{
 		%>
 		<form method="post" action="bidLogic.jsp">
