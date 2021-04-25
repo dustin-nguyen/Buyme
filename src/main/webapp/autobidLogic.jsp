@@ -25,7 +25,7 @@
         int price = Integer.parseInt(request.getParameter("price"));
 		int upperlimit = Integer.parseInt(request.getParameter("upperlimit"));
 		String buyer = String.valueOf(session.getAttribute("Username"));
-        String increments = "SELECT increment FROM item WHERE itemID = " + itemID  +  "";
+        String increments = "SELECT increment FROM item WHERE itemID = " + itemID;
 		ResultSet result = stmt.executeQuery(increments);
 		int increment=0;
 		if (result.next()){

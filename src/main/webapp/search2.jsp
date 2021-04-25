@@ -24,6 +24,7 @@
 
 		//Make a SELECT query from the sells table 
 		String str = "SELECT * FROM item ";
+		session.setAttribute("select", str);
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
 		//Make an HTML table to show the results in:
@@ -31,50 +32,49 @@
 	<div class="controls">
 		 <a href="sell.jsp"
 			class="Button-link">Sell Item</a> <a href="search.jsp"
-			class="Button-link">Search</a> <a href="alert.jsp"
-			class="Button-link">Wishlist</a> <a href="logout.jsp"
+			class="Button-link">Search Again</a> <a href="alert.jsp"
+			class="Button-link">Alert</a> <a href="logout.jsp"
 			class="Button-link">Log Out</a>
 	</div>
+	<form action="search3.jsp" method="post">
+	<select name="sort">
+		<option value="0">Price Lowest to Highest</option>
+		<option value="1">Price Highest to Lowest</option>
+		<option value="2">Name A-Z</option>
+		<option value="3">Name Z-A</option>
+		<option value="4">Type</option>
+	</select>&nbsp;
+	<input type="submit" value="submit"/>
+	</form>
 	<%
 	out.print("<table>");
 	//make a row
 	out.print("<tr>");
 	//make a column
+	//make a column
 	out.print("<td>");
-	//print out column header
-	out.print("itemID");
+	out.print("Name");
 	out.print("</td>");
 	//make a column
 	out.print("<td>");
-	out.print("name");
+	out.print("Type");
 	out.print("</td>");
 	//make a column
 	out.print("<td>");
-	out.print("type");
+	out.print("Price");
 	out.print("</td>");
 	//make a column
 	out.print("<td>");
-	out.print("increment");
+	out.print("Close Date");
 	out.print("</td>");
 	//make a column
-	out.print("<td>");
-	out.print("price");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("option");
-	out.print("</td>");
 	out.print("</tr>");
 	//parse out the results
 	while (result.next()) {
 		//make a row
 		out.print("<tr>");
 		//make a column
-		out.print("<td>");
-		//Print out current itemID:
 		int temp = result.getInt("itemID");
-		out.print(temp);
-		out.print("</td>");
 		out.print("<td>");
 		//Print out current item's name:
 		out.print(result.getString("name"));
@@ -85,11 +85,11 @@
 		out.print("</td>");
 		out.print("<td>");
 		//Print out current increment
-		out.print(result.getString("increment"));
+		out.print(result.getString("current_price"));
 		out.print("</td>");
 		out.print("<td>");
 		//Print out current price
-		out.print(result.getString("current_price"));
+		out.print(result.getString("close_date"));
 		out.print("</td>");
 		out.print("<td>");
 		//Print out option

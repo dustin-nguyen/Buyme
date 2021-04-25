@@ -109,7 +109,7 @@
 			<button class="Sell-button" type="submit" name="h" value=<%=result.getString("itemID")%>>Previous Bids</button>
 		</form>
 		<form method="post" action="simItems.jsp">
-			<button class="Sell-button" type="submit" name="sim" value=<%=result.getString("itemID")%>>Similiar Items</button>
+			<button class="Sell-button" type="submit" name="sim" value=<%=result.getString("itemID")%>>Similar Items</button>
 		</form>
 		<div class="controls">
 			<a href="customerHomePage.jsp" class="Button-link">Home Page</a> <br>

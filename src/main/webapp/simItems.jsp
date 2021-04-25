@@ -1,10 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 
 <html lang="en">
 <head>
@@ -22,9 +20,19 @@
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
 		String itemID = request.getParameter("sim");
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, -1);
+		Date date = calendar.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String month = format.format(date);
+		Date dNow = new Date( );
+        SimpleDateFormat ft = 
+        new SimpleDateFormat ("yyyy-MM-dd ");
+		String to_date =  ft.format(dNow) ;
 		//Make a SELECT query from the sells table 
-		String temp2 = "SELECT * from item t where t.itemID!=" + itemID + " AND t.type IN (Select i.type from item i WHERE i.itemID=" + itemID + ")";
+		String temp2 = "SELECT * from item t where t.itemID!=" + itemID + " AND t.close_date <=" +"\""+ to_date +"\"" + " AND t.close_date >=" +"\""+ month +"\""+ " AND t.type IN (Select i.type from item i WHERE i.itemID=" + itemID + ")";
 		//Run the query against the database.
+		out.print(temp2);
 		ResultSet result = stmt.executeQuery(temp2);
 		//Make an HTML table to show the results in:
 	%>

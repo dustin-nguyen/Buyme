@@ -13,10 +13,20 @@
 	<div class="controls">
 		<a
 			href="sell.jsp" class="Button-link">Sell Item</a> <a
-			href="search.jsp" class="Button-link">Search</a> <a
-			href="wishlistlist.jsp" class="Button-link">Wishlist</a> <a
+			href="search.jsp" class="Button-link">Search Again</a> <a
+			href="alert.jsp" class="Button-link">Alert</a> <a
 			href="logout.jsp" class="Button-link">Log Out</a>
 	</div>
+	<form action="search3.jsp" method="post">
+	<select name="sort">
+		<option value="0">Price Lowest to Highest</option>
+		<option value="1">Price Highest to Lowest</option>
+		<option value="2">Name A-Z</option>
+		<option value="3">Name Z-A</option>
+		<option value="4">Type</option>
+	</select>&nbsp;
+	<input type="submit" value="submit"/>
+	</form>
 	<%
 	try {
 
@@ -24,13 +34,31 @@
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String l=String.valueOf(session.getAttribute("select"));
+		int h = Integer.parseInt(request.getParameter("sort"));
+		if (h==4){
+			l+=" ORDER BY TYPE";
+		}
+		else if(h==0){
+			l+=" ORDER BY current_price";
+		}
+		else if(h==1){
+			l+=" ORDER BY current_price desc";
+		}
+		else if(h==3){
+			l+=" ORDER BY NAME desc";
+		}
+		else if(h==2){
+			l+=" ORDER BY NAME";
+		}
 		ResultSet result = stmt.executeQuery(l);
-		out.print("Added to wishlist!!!!");
 		if (result.next()) {
 			out.print("<table>");
 			out.print("<tr>");
 			out.print("<td>");
 			out.print("Name");
+			out.print("</td>");
+			out.print("<td>");
+			out.print("Type");
 			out.print("</td>");
 			out.print("<td>");
 			out.print("Price");
@@ -44,15 +72,14 @@
 			out.print(result.getString("name"));
 			out.print("</td>");
 			out.print("<td>");
+			out.print(result.getString("type"));
+			out.print("</td>");
+			out.print("<td>");
 			out.print(result.getString("current_price"));
 			out.print("</td>");
 			out.print("<td>");
 			//Print out current beer name:
 			out.print(result.getString("close_date"));
-			out.print("</td>");
-			out.print("<td>");
-			%><form method="get" action="wishlist.jsp">
-			<button type="submit" name="wl" value=<%=result.getString("itemID")%>>Add to Wishlist</button></form><%
 			out.print("</td>");
 			out.print("<td>");
 			%><form action="bid.jsp" method="post">
@@ -73,15 +100,14 @@
 			out.print(result.getString("name"));
 			out.print("</td>");
 			out.print("<td>");
+			out.print(result.getString("type"));
+			out.print("</td>");
+			out.print("<td>");
 			out.print(result.getString("current_price"));
 			out.print("</td>");
 			out.print("<td>");
 			//Print out current beer name:
 			out.print(result.getString("close_date"));
-			out.print("</td>");
-			out.print("<td>");
-			%><form method="get" action="wishlist.jsp">
-			<button type="submit" name="wl" value=<%=result.getString("itemID")%>>Add to Wishlist</button></form><%
 			out.print("</td>");
 			out.print("<td>");
 			%><form action="bid.jsp" method="post">
