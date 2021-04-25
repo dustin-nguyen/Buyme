@@ -20,15 +20,15 @@
 		String choice = request.getParameter("price");
 		String select = "";
 		if (choice.equals("10")) {
-			select += "SELECT itemID,name,current_price,close_date FROM item WHERE current_price<10";
+			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price<10";
 		} else if (choice.equals("100")) {
-			select += "SELECT itemID,name,current_price,close_date FROM item WHERE current_price>=10 AND current_price <100";
+			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price>=10 AND current_price <100";
 		} else if (choice.equals("1000")) {
-			select += "SELECT itemID,name,current_price,close_date FROM item WHERE current_price>=100 AND current_price <1000";
+			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price>=100 AND current_price <1000";
 		} else if (choice.equals("1001")) {
-			select += "SELECT itemID,name,current_price,close_date FROM item WHERE current_price>=1000";
+			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price>=1000";
 		} else {
-			select += "SELECT itemID,name,current_price,close_date FROM item";
+			select += "SELECT itemID,name,current_price,close_date,type FROM item";
 			flag = 1;
 		}
 		String choice2 = request.getParameter("command");
@@ -43,9 +43,9 @@
 		String choice3 = request.getParameter("namelook");
 		if (!choice3.equals("")) {
 			if (flag == 1) {
-		select += " WHERE name = " + '"' + choice3 + '"';
+		select += " WHERE name like = " + "\"%" + choice3 + "%\"";
 			} else {
-		select += " AND name = " + '"' + choice3 + '"';
+		select += " AND name like " + "\"%" + choice3 + "%\"";
 			}
 			flag = 0;
 		}
@@ -62,18 +62,24 @@
 			href="logout.jsp" class="Button-link">Log Out</a>
 	</div>
 	<p>Sort by:</p>
-	<select name="sort" size=1>
+	<form action="search3.jsp" method="post">
+	<select name="sort">
 		<option value="0">Price Lowest to Highest</option>
-		<option value="0">Price Lowest to Highest</option>
-		<option value="10">Name A-Z</option>
-		<option value="10">Name Z-A</option>
-		<option value="100">Type</option>
+		<option value="1">Price Highest to Lowest</option>
+		<option value="2">Name A-Z</option>
+		<option value="3">Name Z-A</option>
+		<option value="4">Type</option>
 	</select>&nbsp;
+	<input type="submit" value="submit"/>
+	</form>
 	<%
 	out.print("<table>");
 	out.print("<tr>");
 	out.print("<td>");
 	out.print("Name");
+	out.print("</td>");
+	out.print("<td>");
+	out.print("Type");
 	out.print("</td>");
 	out.print("<td>");
 	out.print("Price");
@@ -85,6 +91,9 @@
 	out.print("<tr>");
 	out.print("<td>");
 	out.print(result.getString("name"));
+	out.print("</td>");
+	out.print("<td>");
+	out.print(result.getString("type"));
 	out.print("</td>");
 	out.print("<td>");
 	out.print(result.getString("current_price"));
@@ -121,6 +130,9 @@
 	out.print(result.getString("name"));
 	out.print("</td>");
 	out.print("<td>");
+	out.print(result.getString("type"));
+	out.print("</td>");
+	out.print("<td>");
 	out.print(result.getString("current_price"));
 	out.print("</td>");
 	out.print("<td>");
@@ -128,11 +140,6 @@
 	out.print(result.getString("close_date"));
 	out.print("</td>");
 	out.print("<td>");
-	%><form method="get" action="wishlist.jsp">
-		<button type="submit" name="wl" value=<%=result.getString("itemID")%>>Add
-			to Wishlist</button>
-	</form>
-	<%
 	out.print("</td>");
 	out.print("<td>");
 	%><form action="bid.jsp" method="post">

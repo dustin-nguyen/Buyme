@@ -46,7 +46,10 @@
 			session.setAttribute("type", type);
 			if(type.equals("customers")){
 				response.sendRedirect("customerHomePage.jsp");
-			}else{
+			}else if(type.equals("representative")){
+				response.sendRedirect("adminHomePage.jsp");
+			}
+			else{
 				//response.sendRedirect("customerHomePage.jsp");
 				response.sendRedirect("adminHomePage.jsp");
 			}

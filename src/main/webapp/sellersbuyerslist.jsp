@@ -40,6 +40,7 @@
 	out.print("Type");
 	out.print("</td>");
 	out.print("</tr>");
+	out.print(choice);
 	while (result.next()){
 		out.print("<tr>");
 		out.print("<td>");

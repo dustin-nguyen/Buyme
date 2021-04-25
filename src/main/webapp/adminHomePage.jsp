@@ -27,6 +27,8 @@
 				</h1>
 									
 				<div class="controls">
+					<a href="createCustRep.jsp" class="Button-link">Create Customer Rep Account</a>
+					<a href="report.jsp" class="Button-link">Sales Report</a>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
 			</div>

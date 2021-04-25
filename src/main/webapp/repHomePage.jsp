@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css"href="css/home.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Customer Home Page</title>
+<title>Admin Home Page</title>
 </head>
 <body style="background-color:black;
 			color:white; 
@@ -27,14 +27,10 @@
 				</h1>
 									
 				<div class="controls">
-					<a href="sell.jsp" class="Button-link" >Sell Item</a>
-					<br>
-					<a href="question.jsp" class="Button-link" >Ask question</a>
-					<br>
-					<a href="search.jsp" class="Button-link" >Search</a>
-					<br>
-					<a href="alert.jsp" class="Button-link">Alerts</a>
-					<br>
+					<a href="editEndUser.jsp" class="Button-link">Edit End User Account</a>
+					<a href="report.jsp" class="Button-link">Questions</a>
+                    <a href="report.jsp" class="Button-link">Remove Bid</a>
+                    <a href="report.jsp" class="Button-link">Remove Auction</a>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
 			</div>

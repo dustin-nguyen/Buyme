@@ -53,10 +53,8 @@
 		out.print("<tr>");
 		out.print("<td>");
 		%>
-		<a href="sellersbuyerslist.jsp"
-				class="Button-link" value=<%= result.getString("buyer") %>></a>
+		<a href="sellersbuyerslist.jsp?bsell=<%= result.getString("buyer")%>"><%= result.getString("buyer") %></a>
 		<%
-		out.print(result.getString("buyer"));
 		out.print("</td>");
 		out.print("<td>");
 		out.print(result.getString("price"));
