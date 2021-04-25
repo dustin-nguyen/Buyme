@@ -43,8 +43,9 @@
 		ps.setString(4, to_date);
 		ps.executeUpdate();
 		
+		String username = String.valueOf(session.getAttribute("Username"));
 		//Make an update statement for the item table:
-		String update = "UPDATE item SET current_price = " + '"' + price + '"' + " WHERE itemID =" + '"' + itemID + '"';
+		String update = "UPDATE item SET current_price = " + '"' + price + '"' + ",buyer = " + '"' + username + '"' + " WHERE itemID =" + '"' + itemID + '"';
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement up = con.prepareStatement(update);
 

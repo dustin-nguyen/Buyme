@@ -58,6 +58,7 @@
 		String cond = request.getParameter("condition");
 		float screenSize = Float.parseFloat(request.getParameter("screenSize"));		
 		//Make an insert statement for the feature table:
+		// never use the word "condition" as colum name
 		String insertFeature = "INSERT INTO feature(itemID,brand,item_condition,screen_size) VALUES (?, ?, ?, ?)";
 		
 		

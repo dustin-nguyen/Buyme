@@ -33,6 +33,8 @@
 					<br>
 					<a href="alert.jsp" class="Button-link">Alerts</a>
 					<br>
+					<a href="soldItem.jsp" class="Button-link" >Sold Item</a>
+					<br>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
 			</div>
