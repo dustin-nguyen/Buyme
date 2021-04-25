@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -12,42 +12,36 @@
 <body>
 	<%
 	try {
-
+		Date dNow = new Date( );
+        SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
+		String to_date =  ft.format(dNow) ;
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
-		int flag = 0;
 		String choice = request.getParameter("price");
 		String select = "";
 		if (choice.equals("10")) {
-			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price<10";
+			select += "SELECT * FROM item i,feature f WHERE i.itemID=f.itemID AND i.current_price<10";
 		} else if (choice.equals("100")) {
-			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price>=10 AND current_price <100";
+			select += "SELECT * FROM item i,feature f WHERE i.itemID=f.itemID AND i.current_price>=10 AND i.current_price <100";
 		} else if (choice.equals("1000")) {
-			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price>=100 AND current_price <1000";
+			select += "SELECT * FROM item i,feature f WHERE i.itemID=f.itemID AND i.current_price>=100 AND i.current_price <1000";
 		} else if (choice.equals("1001")) {
-			select += "SELECT itemID,name,current_price,close_date,type FROM item WHERE current_price>=1000";
+			select += "SELECT * FROM item i,feature f WHERE i.itemID=f.itemID AND i.current_price>=1000";
 		} else {
-			select += "SELECT itemID,name,current_price,close_date,type FROM item";
-			flag = 1;
+			select += "SELECT * FROM item i,feature f WHERE i.itemID=f.itemID";
 		}
 		String choice2 = request.getParameter("command");
 		if (!choice2.equals("all")) {
-			if (flag == 1) {
-		select += " WHERE type = " + '"' + choice2 + '"';
-			} else {
-		select += " AND type = " + '"' + choice2 + '"';
-			}
-			flag = 0;
+		select += " AND i.type = " + '"' + choice2 + '"';
 		}
 		String choice3 = request.getParameter("namelook");
 		if (!choice3.equals("")) {
-			if (flag == 1) {
-		select += " WHERE name like = " + "\"%" + choice3 + "%\"";
-			} else {
-		select += " AND name like " + "\"%" + choice3 + "%\"";
-			}
-			flag = 0;
+		select += " AND i.name like " + "\"%" + choice3 + "%\"";
+		}
+		String choice4 = request.getParameter("command2");
+		if (!choice4.equals("all")) {
+			select += " AND f.brand = " + '"' + choice4 + '"';
 		}
 		//out.print(select);
 		session.setAttribute("select", select);
@@ -82,28 +76,40 @@
 	out.print("Type");
 	out.print("</td>");
 	out.print("<td>");
+	out.print("Brand");
+	out.print("</td>");
+	out.print("<td>");
 	out.print("Price");
 	out.print("</td>");
 	out.print("<td>");
 	out.print("Close Date");
 	out.print("</td>");
+	out.print("<td>");
+	out.print("Status");
+	out.print("</td>");
 	out.print("</tr>");
 	out.print("<tr>");
 	out.print("<td>");
-	out.print(result.getString("name"));
+	out.print(result.getString("i.name"));
 	out.print("</td>");
 	out.print("<td>");
-	out.print(result.getString("type"));
+	out.print(result.getString("i.type"));
 	out.print("</td>");
 	out.print("<td>");
-	out.print(result.getString("current_price"));
+	out.print(result.getString("f.brand"));
 	out.print("</td>");
 	out.print("<td>");
-	out.print(result.getString("close_date"));
+	out.print(result.getString("i.current_price"));
 	out.print("</td>");
 	out.print("<td>");
+	out.print(result.getString("i.close_date"));
 	out.print("</td>");
 	out.print("<td>");
+	Date a=ft.parse(result.getString("i.close_date"));
+	if (ft.format(a).compareTo(to_date)<0){
+		out.print("Expired");
+	}
+	else{
 	%><form action="bid.jsp" method="post">
 		<input type="hidden" name="itemID"
 			value=<%=result.getString("itemID")%> /> <input type="submit"
@@ -111,6 +117,7 @@
 	</form>
 	<%
 	out.print("</td>");
+	}
 	out.print("</tr>");
 	} else {
 	%>
@@ -127,20 +134,27 @@
 	while (result.next()) {
 	out.print("<tr>");
 	out.print("<td>");
-	out.print(result.getString("name"));
+	out.print(result.getString("i.name"));
 	out.print("</td>");
 	out.print("<td>");
-	out.print(result.getString("type"));
+	out.print(result.getString("i.type"));
 	out.print("</td>");
 	out.print("<td>");
-	out.print(result.getString("current_price"));
+	out.print(result.getString("f.brand"));
+	out.print("</td>");
+	out.print("<td>");
+	out.print(result.getString("i.current_price"));
 	out.print("</td>");
 	out.print("<td>");
 	//Print out current beer name:
-	out.print(result.getString("close_date"));
+	out.print(result.getString("i.close_date"));
 	out.print("</td>");
 	out.print("<td>");
-	out.print("</td>");
+	Date a=ft.parse(result.getString("i.close_date"));
+	if (ft.format(a).compareTo(to_date)<0){
+		out.print("Expired");
+	}
+	else{
 	out.print("<td>");
 	%><form action="bid.jsp" method="post">
 		<input type="hidden" name="itemID"
@@ -149,6 +163,7 @@
 	</form>
 	<%
 	out.print("</td>");
+	}
 	out.print("</tr>");
 	}
 	//close the connection.

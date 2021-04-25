@@ -61,7 +61,7 @@ DROP TABLE IF EXISTS `feature`;
 CREATE TABLE `feature` (
   `itemID` INT  Not NULL primary key  REFERENCES item(itemID),
   `brand` ENUM ('Apple','Samsung','Google','Dell','Acer') Not NULL,
-  `condition` ENUM ('Excellent','Good','Normal','Bad') Not NULL,
+  `storage_size` INT Not NULL,
   `screen_size`	FLOAT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -87,10 +87,13 @@ DROP TABLE IF EXISTS `wishList`;
 /*!40101 SET character_set_client = utf8 */;
 -- Date=YYYY-MM-DD
 CREATE TABLE `wishList` (
-  `itemID`  INT  Not NULL  REFERENCES item(itemID),
-  `buyer`  varchar(50)  Not NULL REFERENCES account(username),
-  `message` varchar(100) NOT NULL,
-  PRIMARY KEY (`itemID`,`buyer`)
+ `buyer` varchar(50) references account(username),
+  `brand` ENUM ('Apple','Samsung','Google','Dell','Acer','All') Not NULL,
+  `screen_size`	FLOAT ,
+   `storage_size` INT,
+   `name`  varchar(50)  Not NULL references item(name),
+   `type` varchar(50),
+  PRIMARY KEY (`buyer`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

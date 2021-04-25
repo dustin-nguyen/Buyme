@@ -23,67 +23,59 @@
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
-		String t="SELECT i.name, i.current_price, i.close_date, i.itemID from wishlist w, item i WHERE i.itemID=w.itemID";
+		String username = String.valueOf(session.getAttribute("Username"));
+		String t="SELECT * from wishList w where buyer="+"\""+username+"\"";
 		ResultSet result = stmt.executeQuery(t);
-		if (result.next()) {
-			out.print("<table>");
-			out.print("<tr>");
-			out.print("<td>");
-			out.print("Name");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("Price");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("Close Date");
-			out.print("</td>");
-			out.print("</tr>");
-			out.print("<tr>");
-			out.print("<td>");
-			out.print(result.getString("name"));
-			out.print("</td>");
-			out.print("<td>");
-			out.print(result.getString("current_price"));
-			out.print("</td>");
-			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("close_date"));
-			out.print("</td>");
-			out.print("<td>");
-			%><form action="bid.jsp" method="post">
-    				<input type = "hidden" name = "itemID" value = <%=result.getString("itemID")%>  />
-    				<input type="submit" value="Bid" />
-				</form><%
-			out.print("</td>");
-			out.print("</tr>");
-		}
-		else{
-			%>
-			<h1>NO ITEMS</h1>
-			<%
-		}
+		out.print("<table>");
+		out.print("<tr>");
+		out.print("<td>");
+		out.print("Name");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Types");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Brand");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Screen size");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Memory Size");
+		out.print("</td>");
+		out.print("</tr>");
 		while (result.next()) {
 			out.print("<tr>");
 			out.print("<td>");
 			out.print(result.getString("name"));
 			out.print("</td>");
 			out.print("<td>");
-			out.print(result.getString("current_price"));
+			out.print(result.getString("type"));
 			out.print("</td>");
 			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("close_date"));
+			out.print(result.getString("brand"));
 			out.print("</td>");
 			out.print("<td>");
-			%><form action="bid.jsp" method="post">
-    				<input type = "hidden" name = "itemID" value = <%=result.getString("itemID")%>  />
-    				<input type="submit" value="Bid" />
+			out.print(result.getString("screen_size"));
+			out.print("</td>");
+			out.print("<td>");
+			out.print(result.getString("storage_size"));
+			out.print("</td>");
+			out.print("<td>");
+			%><form action="delete.jsp" method="post">
+					<input type = "hidden" name = "del" value = <%=result.getString("name")%>  />
+					<input type="submit" value="Delete" />
 				</form><%
 			out.print("</td>");
 			out.print("</tr>");
 		}
 		//close the connection.
 		out.print("</table>");
+		%>
+		<form action="wishlist.jsp" method="post">
+				<input type="submit" value="Add item to wishlist" />
+			</form>
+		<%
 		db.closeConnection(con);
 	} catch (Exception ex) {
 		out.print(ex);

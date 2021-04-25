@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -15,6 +15,9 @@
 	<%
 	List<String> list = new ArrayList<String>();
 	try {
+		Date dNow = new Date( );
+        SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
+		String to_date =  ft.format(dNow) ;
 		//Get the database connection
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
@@ -23,7 +26,7 @@
 		Statement stmt = con.createStatement();
 
 		//Make a SELECT query from the sells table 
-		String str = "SELECT * FROM item ";
+		String str = "SELECT * FROM item i, feature f where i.itemID=f.itemID";
 		session.setAttribute("select", str);
 		//Run the query against the database.
 		ResultSet result = stmt.executeQuery(str);
@@ -74,32 +77,38 @@
 		//make a row
 		out.print("<tr>");
 		//make a column
-		int temp = result.getInt("itemID");
+		int temp = result.getInt("i.itemID");
 		out.print("<td>");
 		//Print out current item's name:
-		out.print(result.getString("name"));
+		out.print(result.getString("i.name"));
 		out.print("</td>");
 		out.print("<td>");
 		//Print out current type
-		out.print(result.getString("type"));
+		out.print(result.getString("i.type"));
 		out.print("</td>");
 		out.print("<td>");
 		//Print out current increment
-		out.print(result.getString("current_price"));
+		out.print(result.getString("i.current_price"));
 		out.print("</td>");
 		out.print("<td>");
 		//Print out current price
-		out.print(result.getString("close_date"));
+		out.print(result.getString("i.close_date"));
 		out.print("</td>");
 		out.print("<td>");
 		//Print out option
-	%>
-	<form action="bid.jsp" method="post">
-		<input type="hidden" name="itemID" value=<%=temp%> /> <input
-			type="submit" value="Bid" />
-	</form>
-	<%
-	out.print("</td>");
+		Date a=ft.parse(result.getString("i.close_date"));
+		if (ft.format(a).compareTo(to_date)<0){
+			out.print("Expired");
+		}
+		else{
+		%><form action="bid.jsp" method="post">
+			<input type="hidden" name="itemID"
+				value=<%=result.getString("itemID")%> /> <input type="submit"
+				value="Bid" />
+		</form>
+		<%
+		out.print("</td>");
+		}
 	out.print("</tr>");
 	}
 	out.print("</table>");

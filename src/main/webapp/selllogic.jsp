@@ -55,11 +55,11 @@
 		out.print(itemID);
 		//Get parameters from the HTML form at the sell.jsp
 		String brand = request.getParameter("brand");
-		String cond = request.getParameter("condition");
+		int storageSize = Integer.parseInt(request.getParameter("storageSize"));
 		float screenSize = Float.parseFloat(request.getParameter("screenSize"));		
 		//Make an insert statement for the feature table:
 		// never use the word "condition" as colum name
-		String insertFeature = "INSERT INTO feature(itemID,brand,item_condition,screen_size) VALUES (?, ?, ?, ?)";
+		String insertFeature = "INSERT INTO feature(itemID,brand,storage_size,screen_size) VALUES (?, ?, ?, ?)";
 		
 		
 		PreparedStatement p = con.prepareStatement(insertFeature);
@@ -67,7 +67,7 @@
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		p.setInt(1, itemID); 
 		p.setString(2, brand);
-		p.setString(3, cond);
+		p.setInt(3, storageSize);
 		p.setFloat(4, screenSize);
 		//out.print(insertFeature);
 		//out.print("\n");

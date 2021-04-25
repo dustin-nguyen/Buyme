@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,9 @@
 	<br>
 	<%
 	try {
+		Date dNow = new Date( );
+        SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
+		String to_date =  ft.format(dNow) ;
 		String username = String.valueOf(session.getAttribute("Username"));
 		int itemID = Integer.parseInt(request.getParameter("itemID"));
 		//Get the database connection
@@ -81,6 +84,14 @@
 				<td>Close date: <%=result.getString("close_date")%></td>
 			</tr>
 		</div>
+		
+		<%
+		Date a=ft.parse(result.getString("close_date"));
+		if (ft.format(a).compareTo(to_date)<0){
+			out.print("Expired");
+		}
+		else{
+		%>
 		<form method="post" action="bidLogic.jsp">
 			<div class="textbox">
 				<tr>
@@ -117,6 +128,7 @@
 		</div>
 	</div>
 	<%
+		}
 	}
 
 	//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.

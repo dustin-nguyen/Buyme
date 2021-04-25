@@ -32,7 +32,6 @@
 		//Make a SELECT query from the sells table 
 		String temp2 = "SELECT * from item t where t.itemID!=" + itemID + " AND t.close_date <=" +"\""+ to_date +"\"" + " AND t.close_date >=" +"\""+ month +"\""+ " AND t.type IN (Select i.type from item i WHERE i.itemID=" + itemID + ")";
 		//Run the query against the database.
-		out.print(temp2);
 		ResultSet result = stmt.executeQuery(temp2);
 		//Make an HTML table to show the results in:
 	%>

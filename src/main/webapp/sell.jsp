@@ -84,15 +84,9 @@
 			</div>
 			<div class="textbox">
 				<tr>
-					<td>Item's Condition</td>
-					<div class="custom-select" style="width: 200px;">
-						<select name="condition" size=1>
-							<option value="Excellent">Excellent</option>
-							<option value="Good">Good</option>
-							<option value="Normal">Normal</option>
-							<option value="Bad">Bad</option>
-						</select>&nbsp;
-					</div>
+					<td>Storage size</td>
+					<td><input type="number" name="storageSize"
+						placeholder="Enter Storage Size" min="1" required></td>
 				</tr>
 			</div>
 

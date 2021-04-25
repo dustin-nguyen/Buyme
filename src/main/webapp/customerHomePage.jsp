@@ -29,13 +29,15 @@
 				<div class="controls">
 					<a href="sell.jsp" class="Button-link" >Sell Item</a>
 					<br>
-					<a href="question.jsp" class="Button-link" >Ask question</a>
-					<br>
 					<a href="search.jsp" class="Button-link" >Search</a>
 					<br>
-					<a href="alert.jsp" class="Button-link">Alerts</a>
-					<br>
 					<a href="soldItem.jsp" class="Button-link" >Sold Item</a>
+					<br>
+					<a href="wishlistlist.jsp" class="Button-link" >Wishlist</a>
+					<br>
+					<a href="question.jsp" class="Button-link" >Ask question</a>
+					<br>
+					<a href="alert.jsp" class="Button-link" >Alert</a>
 					<br>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
