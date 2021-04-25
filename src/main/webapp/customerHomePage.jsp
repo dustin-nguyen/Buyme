@@ -22,8 +22,9 @@
 			ApplicationDB db = new ApplicationDB();
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();
-			String increments = "SELECT count(*) from alert where buyer="+"\""+username+"\"";
+			String increments = "SELECT count(*) as j from alert where buyer="+"\""+username+"\"";
 			ResultSet result = stmt.executeQuery(increments);
+			result.next();
 			%>
 			<div class="welcome">
 				<h1>
@@ -41,7 +42,7 @@
 					<br>
 					<a href="question.jsp" class="Button-link" >Ask question</a>
 					<br>
-					<a href="alert.jsp" class="Button-link" >Alert</a>
+					<a href="alert.jsp" class="Button-link" >Alert(<%=result.getString("j")%>)</a>
 					<br>
 					<a href="logout.jsp" class="Button-link">Log Out</a>
 				</div>
