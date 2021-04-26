@@ -32,6 +32,8 @@
 				</h1>
 									
 				<div class="controls">
+					<a href="removeAccount.jsp" class="Button-link" >Delete account</a>
+					<br>
 					<a href="sell.jsp" class="Button-link" >Sell Item</a>
 					<br>
 					<a href="search.jsp" class="Button-link" >Search</a>

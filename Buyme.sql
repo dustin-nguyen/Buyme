@@ -106,7 +106,11 @@ DROP TABLE IF EXISTS `alert`;
 CREATE TABLE `alert` (
   `buyer`  varchar(50)   Not NULL REFERENCES account(username),
   `message` varchar(100) NOT NULL,
+<<<<<<< HEAD
+  PRIMARY KEY (`buyer`,`message`)
+=======
 	`messageID` INT AUTO_INCREMENT Primary key
+>>>>>>> e2a24c349bc11c3ae3388a5b9b47b1bd620bc894
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
