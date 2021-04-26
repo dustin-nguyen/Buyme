@@ -25,7 +25,7 @@
 		<form method="post" action="addwishlist.jsp">
 			<div class="textbox">
 				<tr>
-					<td>Name</td>
+					<td>Model Name(ex Macbook)</td>
 					<td><input type="text" name="name"
 						placeholder="Enter Item's Name" required></td>
 				</tr>

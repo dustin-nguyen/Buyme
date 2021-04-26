@@ -61,7 +61,10 @@
 	out.print("Price");
 	out.print("</td>");
 	out.print("<td>");
-	out.print("Date");
+	out.print("Type");
+	out.print("</td>");
+	out.print("<td>");
+	out.print("Close Date");
 	out.print("</td>");
 	out.print("</tr>");
 	while (result.next()) {
@@ -73,8 +76,10 @@
 		out.print(result.getString("current_price"));
 		out.print("</td>");
 		out.print("<td>");
-		//Print out current beer name:
 		out.print(result.getString("type"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("close_date"));
 		out.print("</td>");
 		out.print("</tr>");
 	}

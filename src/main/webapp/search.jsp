@@ -33,7 +33,7 @@
 	</form>
 	<h1>Search by attributes</h1>
 	<form method="post" action="search1.jsp">
-		<p>Search by model name:</p>
+		<p>Search by model name(Macbook, iPhone, XPS):</p>
 		<input type="text" name="namelook"> <br>
 		<p>Search by current price:</p>
 		<select name="price" size=1>

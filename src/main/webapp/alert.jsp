@@ -32,6 +32,9 @@
 		String t="SELECT * from alert WHERE buyer=" + '"' + username + '"';
 		ResultSet result = stmt.executeQuery(t);
 		while (result.next()) {
+			out.print("<h1>");
+			out.print("Message");
+			out.print("</h1>");
 			out.print("<p>");
 			out.print(result.getString("message"));
 			out.print("</p>");

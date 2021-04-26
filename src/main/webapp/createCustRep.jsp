@@ -41,7 +41,7 @@
 		  <input type="submit" class ="Sign-up-button" value="Sign up" />
 		</form>
 		<div class="controls">
-			<a href="signin.jsp" class="Button-link" type="submit">Sign In</a>
+			<a href="adimnHomePage.jsp" class="Button-link" type="submit">Enter</a>
 		</div>
 	</div>
 <%
@@ -50,25 +50,18 @@
 			String name = String.valueOf(session.getAttribute("name"));
 			String type = String.valueOf(session.getAttribute("type"));
 			
-			%>
-			<div class="welcome">
-				<h1>
-				Welcome <%=name%> (<%=type%>)
-				</h1>
-									
-				<div class="controls">
+			%>						
+			<div class="controls">
 				/*<form action="adminEditFunctions.jsp" method="post">
 				<p>Edit this person:</p>
 					<input type="text" name="username"> <br>
 					<input type="submit" value="submit" />
 				</form>*/
-					<br>
-					<a href="adminHomePage.jsp" class="Button-link">Go Back</a>
-					<br>
-					<a href="logout.jsp" class="Button-link">Log Out</a>
-				</div>
+				<br>
+				<a href="adminHomePage.jsp" class="Button-link">Go Back</a>
+				<br>
+				<a href="logout.jsp" class="Button-link">Log Out</a>
 			</div>
-
        		 <%
 
 		

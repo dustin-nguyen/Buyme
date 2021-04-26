@@ -23,17 +23,17 @@
         Date dNow = new Date( );
         SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
         String to_date =  ft.format(dNow) ;
-        String wishlist="SELECT * from item where close_date<"+"\""+ to_date +"\"";
+        String wishlist="SELECT * from item where close_date<"+"\""+ to_date +"\""+ "AND i.itemID in (select max(h.price) from historyofbid h group by i.itemID)";
         String message="You have won";
         ResultSet result = stmt.executeQuery(wishlist);
         while (result.next()){
-            if (Integer.parseInt(result.getString("checkwin"))==0){
+            if (Integer.parseInt(result.getString("checkwin"))==0 && Integer.parseInt(result.getString("current_price"))<=Integer.parseInt(result.getString("secret_price"))){
                 String insertFeature2 = "INSERT INTO alert(buyer,message) VALUES (?, ?)";
                 PreparedStatement pp = con.prepareStatement(insertFeature2);
                 pp.setString(1, result.getString("buyer")); 
                 pp.setString(2, message);
                 pp.executeUpdate();
-                String insertFeature3 = "UPDATE item SET checkwin=1 WHERE itemID="+"""+result.getString("itemID")+""";
+                String insertFeature3 = "UPDATE item SET checkwin=1 WHERE itemID="+"\""+ result.getString("itemID")+ "\"";
                 stmt.executeUpdate(insertFeature3);
             }
         }
