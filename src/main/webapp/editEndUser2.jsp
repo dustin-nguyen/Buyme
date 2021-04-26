@@ -23,18 +23,16 @@
 			%>
 			<div class="welcome">
 				<h1>
-				Edit End User
+				What would you like to edit?
 				</h1>
-									
-				<div class="controls">
-					<form action="adminEditFunctions.jsp" method="post">
-				<p>Edit this person:</p>
-					<input type="text" name="username"> <br>
-					<form method="post" action="editEndUser2.jsp">
-					<input type="submit" value="submit" />
-				</form>
-					<a href="repHomePage.jsp" class="Button-link">Go Back</a>
-					<a href="logout.jsp" class="Button-link">Log Out</a>
+
+				<div class="controls">    
+					<a href="repHomePage.jsp" class="Button-link">Username</a> <br>
+                    <a href="repHomePage.jsp" class="Button-link">Password</a> <br>
+                    <a href="repHomePage.jsp" class="Button-link">Name</a> <br>
+                    <a href="repHomePage.jsp" class="Button-link">Email</a> <br>
+                    <a href="repHomePage.jsp" class="Button-link">Go Back</a> <br>
+					<a href="logout.jsp" class="Button-link">Log Out</a> <br>
 				</div>
 			</div>
 
