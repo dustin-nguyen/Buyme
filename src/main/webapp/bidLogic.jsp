@@ -51,7 +51,6 @@
 		up.executeUpdate();
 
 		String doit = "Select distinct buyer from historyofbid where itemID=" + itemID + " AND buyer!= " + "\"" + username + "\"";
-		out.print(doit);
 		ResultSet result = stmt.executeQuery(doit);
 		while (result.next()) {
 			String insertFeature2 = "INSERT INTO alert(buyer,message) VALUES (?, ?)";

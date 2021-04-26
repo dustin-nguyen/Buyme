@@ -19,6 +19,7 @@
 
 		//Create a SQL statement
 		Statement stmt = con.createStatement();
+		Statement stmt2 = con.createStatement();
 
 		//Get parameters from the HTML form at the bid.jsp
 		int itemID = Integer.parseInt(request.getParameter("itemID"));

@@ -9,15 +9,13 @@
     <title>BuyMe - Sales Reports</title>
     <link rel="stylesheet" href="style.css?v=1.0"/>
 </head>
-<body>
-    <%
+<body>	
+    	<div class="content">
+	    <%	
 			try {
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				conn = DriverManager.getConnection(url, "cs336admin", "cs336password");
-				
 				String query = null;
 		    	if (reportType.equals("totalEarnings")) {
-		    		query = "SELECT SUM(price) FROM Product WHERE sold=true";
+		    		query = "SELECT SUM(price) FROM item WHERE checkwin=true";
 		    		ps = conn.prepareStatement(query);
 		    		rs = ps.executeQuery();
 		    		if (rs.next()) { %>
@@ -32,10 +30,10 @@
 		    				</tr>
 		    		<%	} while (rs.next()); %>
 		    			</table>
-		    			<br><a href="salesReport.jsp">Click here to generate more sales reports.</a>
+		    			<br><a href="salesReports.jsp">Click here to generate more sales reports.</a>
 		    	<%	}		    		
 		    	} else if (reportType.equals("earningsPerItem")) {
-		    		query = "SELECT model, SUM(price) FROM Product WHERE sold=true GROUP BY model";
+		    		query = "SELECT type, SUM(price) FROM Product WHERE sold=true GROUP BY model";
 		    		ps = conn.prepareStatement(query);
 		    		rs = ps.executeQuery();
 		    		if (rs.next()) { %>
@@ -95,7 +93,7 @@
 		    		<br><a href="salesReports.jsp">Click here to generate more sales reports.</a>
 		    	<%	}
 		    	} else if (reportType.equals("bestSelling")) {
-		    		query = "SELECT model, COUNT(model), SUM(price) FROM Product WHERE sold=true GROUP BY model ORDER BY COUNT(model) DESC";
+		    		query = "SELECT itemID, COUNT(itemID), SUM(price) FROM item WHERE checkwin=true GROUP BY itemID ORDER BY COUNT(itemID) DESC";
 		    		ps = conn.prepareStatement(query);
 		    		rs = ps.executeQuery();
 		    		if (rs.next()) { %>
@@ -108,8 +106,8 @@
 		    				</tr>
 		    		<%	do { %>
 		    				<tr>
-		    					<td><%= rs.getString("model") %></td>
-		    					<td><%= rs.getInt("COUNT(model)") %></td>
+		    					<td><%= rs.getString("itemID") %></td>
+		    					<td><%= rs.getInt("COUNT(itemID)") %></td>
 		    					<td><%= currency.format(rs.getDouble("SUM(price)")) %></td>
 		    				</tr>
 		    		<%	} while (rs.next()); %>
@@ -117,7 +115,7 @@
 		    		<br><a href="salesReports.jsp">Click here to generate more sales reports.</a>
 		    	<%	}
 		    	} else if (reportType.equals("bestBuyers")) {
-		    		query = "SELECT buyer, COUNT(buyer), SUM(price) FROM BuyingHistory GROUP BY buyer ORDER BY COUNT(buyer) DESC";
+		    		query = "SELECT buyer, COUNT(buyer), SUM(price) FROM historyOfBid GROUP BY buyer ORDER BY COUNT(buyer) DESC";
 		    		ps = conn.prepareStatement(query);
 		    		rs = ps.executeQuery();
 		    		if (rs.next()) { %>

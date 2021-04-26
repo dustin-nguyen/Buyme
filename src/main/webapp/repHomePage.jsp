@@ -28,7 +28,7 @@
 									
 				<div class="controls">
 					<a href="editEndUser.jsp" class="Button-link">Edit End User Account</a>
-					<a href="report.jsp" class="Button-link">Questions</a>
+					<a href="answer.jsp" class="Button-link">Answer Questions</a>
                     <a href="report.jsp" class="Button-link">Remove Bid</a>
                     <a href="report.jsp" class="Button-link">Remove Auction</a>
 					<a href="logout.jsp" class="Button-link">Log Out</a>

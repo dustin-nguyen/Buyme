@@ -8,15 +8,6 @@
     <link rel="stylesheet" href="style.css?v=1.0"/>
 </head>
 <body>
-    <% if(session.getAttribute("user") == null) {
-    		response.sendRedirect("login.jsp");
-       } else {
-    	   int accessLevel = Integer.parseInt(session.getAttribute("access_level").toString());
-    	   if (accessLevel != 3) {
-				response.sendRedirect("index.jsp");
-				return;
-    	   } %>	
-    	<%@ include file="navbar.jsp" %>
     	<div class="content">
 	    	<h2>Select a sales report to generate</h2>
 	    	<ul>
@@ -28,6 +19,5 @@
 	            <li><a href="salesReport2.jsp?type=bestBuyers">Best buyers</a></li>	            
 	    	</ul>
     	</div>
-    <% } %>
 </body>
 </html>
