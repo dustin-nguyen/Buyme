@@ -35,15 +35,6 @@ INSERT INTO `account`(`username`, `password`,`type`,`name`,`email`) VALUES ('duc
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
--- Add sell item 
-LOCK TABLES `item` WRITE;
-/*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item`('name','current_price','increment','inital_price','secret_price','seller','close_date','type','checkwin') VALUES ('macbook','100','20','100','10','duc','2021-02-01','laptop','0');
-INSERT INTO `item`('name','current_price','increment','inital_price','secret_price','seller','close_date','type','checkwin') VALUES ('XPS','80','10','80','10','jason','2021-04-24','laptop','0');
-INSERT INTO `item`('name','current_price','increment','inital_price','secret_price','seller','close_date','type','checkwin') VALUES ('Iphone','120','10','120','10','duc','2021-04-26','phone','0');
-INSERT INTO `item`('name','current_price','increment','inital_price','secret_price','seller','close_date','type','checkwin') VALUES ('Nexus','60','5','600','10','duc','2021-04-27','tablet','0');
-/*!40000 ALTER TABLE `item` ENABLE KEYS */;
-UNLOCK TABLES;
 
 -- Table structure for table `item`
 DROP TABLE IF EXISTS `item`;
@@ -64,6 +55,15 @@ CREATE TABLE `item` (
   `checkwin` INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+-- Add sell item 
+LOCK TABLES `item` WRITE;
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item`(`name`,`current_price`,`increment`,`inital_price`,`secret_price`,`seller`,`close_date`,`type`,`checkwin`) VALUES ('macbook','100','20','100','10','duc','2021-02-01','laptop','0');
+INSERT INTO `item`(`name`,`current_price`,`increment`,`inital_price`,`secret_price`,`seller`,`close_date`,`type`,`checkwin`) VALUES ('XPS','80','10','80','10','jason','2021-04-24','laptop','0');
+INSERT INTO `item`(`name`,`current_price`,`increment`,`inital_price`,`secret_price`,`seller`,`close_date`,`type`,`checkwin`) VALUES ('Iphone','120','10','120','10','duc','2021-04-26','phone','0');
+INSERT INTO `item`(`name`,`current_price`,`increment`,`inital_price`,`secret_price`,`seller`,`close_date`,`type`,`checkwin`) VALUES ('Nexus','60','5','600','10','duc','2021-04-27','tablet','0');
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+UNLOCK TABLES;
 
 -- Table structure for table `feature`
 DROP TABLE IF EXISTS `feature`;
@@ -119,12 +119,7 @@ CREATE TABLE `alert` (
 	`messageID` INT AUTO_INCREMENT Primary key
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
--- Add sell item 
-LOCK TABLES `question` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `question`item('username','question') VALUES ('duc', 'How can I delete my account?');
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
-UNLOCK TABLES;
+
 -- Table structure for table `question`
 DROP TABLE IF EXISTS `question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -136,7 +131,12 @@ CREATE TABLE `question` (
    `question`  varchar(500)  Not NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+-- Add sell item 
+LOCK TABLES `question` WRITE;
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO question(`username`,`question`) VALUES ('duc', 'How can I delete my account?');
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+UNLOCK TABLES;
 -- Table structure for table `answer`
 DROP TABLE IF EXISTS `answer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
