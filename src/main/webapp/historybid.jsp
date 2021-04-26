@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -74,12 +74,6 @@
 		out.print("</tr>");
 	}
 	out.print("</table>");
-	//String temp = "Select * from item WHERE type=" + result.getString("type");
-	//ResultSet result2 = stmt.executeQuery(temp);
-	//while (result2.next()) {
-		//out.print("Hi");
-	//}
-	//close the connection.
 	con.close();
 	} catch (Exception e) {
 		

@@ -17,107 +17,26 @@
 	try {
 		//Get the database connection
 		ApplicationDB db = new ApplicationDB();
-		Connection con = db.getConnection();
-
-		//Create a SQL statement
-		Statement stmt = con.createStatement();
-
-		String username = String.valueOf(session.getAttribute("Username"));
-		// get current date
-				 Date dNow = new Date( );
-		         SimpleDateFormat ft = 
-		         new SimpleDateFormat ("yyyy-MM-dd ");
-				//String to_date = "TO_DATE(" + ft.format(dNow) + ",'YYYY-MM-DD')";
-				String to_date =  ft.format(dNow) ;
-		//Make a SELECT query from the sells table close_date
-		String str = "SELECT * FROM item WHERE seller = " + '"' + username + '"' + "AND close_date <" + '"' + to_date + '"';
-		//Run the query against the database.
-		ResultSet result = stmt.executeQuery(str);
-		//Make an HTML table to show the results in:
-	%>
-	<div class="controls">
-		 <a href="sell.jsp"
-			class="Button-link">Sell Item</a> <a href="search.jsp"
-			class="Button-link">Search</a> <a href="alert.jsp"
-			class="Button-link">Wishlist</a> <a href="logout.jsp"
-			class="Button-link">Home Page</a> <a href="customerHomePage.jsp"
-			class="Button-link">Log Out</a>
-	</div>
-	<%
-	out.print("<table>");
-	//make a row
-	out.print("<tr>");
-	//make a column
-	out.print("<td>");
-	//print out column header
-	out.print("itemID");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("name");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("type");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("increment");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("price");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("buyer");
-	out.print("</td>");
-	//make a column
-	out.print("<td>");
-	out.print("option");
-	out.print("</td>");
-	out.print("</tr>");
-	//parse out the results
-	while (result.next()) {
-		//make a row
-		out.print("<tr>");
-		//make a column
-		out.print("<td>");
-		//Print out current itemID:
-		int temp = result.getInt("itemID");
-		out.print(temp);
-		out.print("</td>");
-		out.print("<td>");
-		//Print out current item's name:
-		out.print(result.getString("name"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out current type
-		out.print(result.getString("type"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out current increment
-		out.print(result.getString("increment"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out current price
-		out.print(result.getString("current_price"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out current price
-		out.print(result.getString("buyer"));
-		out.print("</td>");
-		out.print("<td>");
-		//Print out option
-	%>
-	<form method="post" action="historybid.jsp">
-			<button class="Sell-button" type="submit" name="h" value=<%=result.getString("itemID")%>>Previous Bids</button>
-		</form>
-	<%
-	out.print("</td>");
-	out.print("</tr>");
-	}
-	out.print("</table>");
+        Connection con = db.getConnection();
+        //Create a SQL statement
+        Statement stmt = con.createStatement();
+        Date dNow = new Date( );
+        SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
+        String to_date =  ft.format(dNow) ;
+        String wishlist="SELECT * from item where close_date<"+"\""+ to_date +"\"";
+        String message="You have won";
+        ResultSet result = stmt.executeQuery(wishlist);
+        while (result.next()){
+            if (Integer.parseInt(result.getString("checkwin"))==0){
+                String insertFeature2 = "INSERT INTO alert(buyer,message) VALUES (?, ?)";
+                PreparedStatement pp = con.prepareStatement(insertFeature2);
+                pp.setString(1, result.getString("buyer")); 
+                pp.setString(2, message);
+                pp.executeUpdate();
+                String insertFeature3 = "UPDATE item SET checkwin=1 WHERE itemID="+"""+result.getString("itemID")+""";
+                stmt.executeUpdate(insertFeature3);
+            }
+        }
 	//close the connection.
 	con.close();
 	} catch (Exception e) {

@@ -28,7 +28,7 @@
 	</form>
 	<h1>Search user history(buyer/seller)</h1>
 	<form method="post" action="sellersbuyerslist.jsp">
-		<input type="text" name="bsell" value="hi"> <br>
+		<input type="text" name="bsell"> <br>
 		<input type="submit" value="submit" />
 	</form>
 	<h1>Search by attributes</h1>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -12,12 +12,14 @@
 <body>
 	<%
 	try {
-
+		Date dNow = new Date( );
+        SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
+		String to_date =  ft.format(dNow) ;
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String choice = request.getParameter("bsell");
-		String selectm = "SELECT i.itemID, i.current_price, i.type from historyofbid h, item i where i.itemID=h.itemID AND h.buyer="+'"' + choice + '"'+" UNION select itemID, current_price, type from item where seller="+'"' + choice + '"';
+		String selectm = "SELECT i.itemID, i.current_price, i.type, i.close_date from historyofbid h, item i where i.itemID=h.itemID AND h.buyer="+'"' + choice + '"'+" UNION select itemID, current_price, type,close_date from item where seller="+'"' + choice + '"';
 		ResultSet result = stmt.executeQuery(selectm);
 	%>
 	<div class="controls">
@@ -64,13 +66,19 @@
 		out.print("<td>");
 		out.print("</td>");
 		out.print("<td>");
-		//IF NOT EXPIRED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		//Print out option
+		Date a=ft.parse(result.getString("close_date"));
+		if (ft.format(a).compareTo(to_date)<0){
+			out.print("Expired");
+		}
+		else{
 		%><form action="bid.jsp" method="post">
 			<input type="hidden" name="itemID"
 				value=<%=result.getString("itemID")%> /> <input type="submit"
 				value="Bid" />
 		</form>
 		<%
+		}
 		out.print("</td>");
 		out.print("</tr>");
 	}

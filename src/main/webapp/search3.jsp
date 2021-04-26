@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="com.Buyme.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*,java.text.*,java.util.Date"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -38,7 +38,9 @@
 	</form>
 	<%
 	try {
-
+		Date dNow = new Date( );
+        SimpleDateFormat ft =  new SimpleDateFormat ("yyyy-MM-dd");
+		String to_date =  ft.format(dNow) ;
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
@@ -60,71 +62,122 @@
 			l+=" ORDER BY NAME";
 		}
 		ResultSet result = stmt.executeQuery(l);
-		if (result.next()) {
-			out.print("<table>");
-			out.print("<tr>");
-			out.print("<td>");
-			out.print("Name");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("Type");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("Price");
-			out.print("</td>");
-			out.print("<td>");
-			out.print("Close Date");
-			out.print("</td>");
-			out.print("</tr>");
-			out.print("<tr>");
-			out.print("<td>");
-			out.print(result.getString("name"));
-			out.print("</td>");
-			out.print("<td>");
-			out.print(result.getString("type"));
-			out.print("</td>");
-			out.print("<td>");
-			out.print(result.getString("current_price"));
-			out.print("</td>");
-			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("close_date"));
-			out.print("</td>");
-			out.print("<td>");
-			%><form action="bid.jsp" method="post">
-    				<input type = "hidden" name = "itemID" value = <%=result.getString("itemID")%>  />
-    				<input type="submit" value="Bid" />
-				</form><%
-			out.print("</td>");
-			out.print("</tr>");
+		if(result.next()){
+		out.print("<table>");
+		out.print("<tr>");
+		out.print("<td>");
+		out.print("Name");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Type");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Brand");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Screen Size");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Storage Size");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Price");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Close Date");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("Status");
+		out.print("</td>");
+		out.print("</tr>");
+		out.print("<tr>");
+		out.print("<td>");
+		out.print(result.getString("i.name"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("i.type"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("f.brand"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("f.screen_size"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("f.storage_size"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("i.current_price"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("i.close_date"));
+		out.print("</td>");
+		out.print("<td>");
+		Date a=ft.parse(result.getString("i.close_date"));
+		if (ft.format(a).compareTo(to_date)<0){
+			out.print("Expired");
 		}
 		else{
-			%>
-			<a href="search.jsp"  type="submit">Search again!!</a>
-			<%
+		%><form action="bid.jsp" method="post">
+			<input type="hidden" name="itemID"
+				value=<%=result.getString("itemID")%> /> <input type="submit"
+				value="Bid" />
+		</form>
+		<%
+		out.print("</td>");
+		}
+		out.print("</tr>");
+		} else {
+		%>
+		<div class="controls">
+			<a
+				href="sell.jsp" class="Button-link">Sell Item</a> <a
+				href="search.jsp" class="Button-link">Search</a> <a
+				href="wishlistlist.jsp" class="Button-link">Wishlist</a> <a
+				href="logout.jsp" class="Button-link">Log Out</a>
+		</div>
+		<h1>No results. Try again.</h1>
+		<%
 		}
 		while (result.next()) {
-			out.print("<tr>");
-			out.print("<td>");
-			out.print(result.getString("name"));
-			out.print("</td>");
-			out.print("<td>");
-			out.print(result.getString("type"));
-			out.print("</td>");
-			out.print("<td>");
-			out.print(result.getString("current_price"));
-			out.print("</td>");
-			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("close_date"));
-			out.print("</td>");
-			out.print("<td>");
-			%><form action="bid.jsp" method="post">
-    				<input type = "hidden" name = "itemID" value = <%=result.getString("itemID")%>  />
-    				<input type="submit" value="Bid" />
-				</form><%
-			out.print("</td>");
-			out.print("</tr>");
+		out.print("<tr>");
+		out.print("<td>");
+		out.print(result.getString("i.name"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("i.type"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("f.brand"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("f.screen_size"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("f.storage_size"));
+		out.print("</td>");
+		out.print("<td>");
+		out.print(result.getString("i.current_price"));
+		out.print("</td>");
+		out.print("<td>");
+		//Print out current beer name:
+		out.print(result.getString("i.close_date"));
+		out.print("</td>");
+		out.print("<td>");
+		Date a=ft.parse(result.getString("i.close_date"));
+		if (ft.format(a).compareTo(to_date)<0){
+			out.print("Expired");
+		}
+		else{
+		%><form action="bid.jsp" method="post">
+			<input type="hidden" name="itemID"
+				value=<%=result.getString("itemID")%> /> <input type="submit"
+				value="Bid" />
+		</form>
+		<%
+		out.print("</td>");
+		}
+		out.print("</tr>");
 		}
 		//close the connection.
 		out.print("</table>");

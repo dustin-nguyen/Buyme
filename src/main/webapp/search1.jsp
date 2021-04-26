@@ -87,6 +87,12 @@
 	out.print("Brand");
 	out.print("</td>");
 	out.print("<td>");
+	out.print("Screen Size");
+	out.print("</td>");
+	out.print("<td>");
+	out.print("Storage Size");
+	out.print("</td>");
+	out.print("<td>");
 	out.print("Price");
 	out.print("</td>");
 	out.print("<td>");
@@ -105,6 +111,12 @@
 	out.print("</td>");
 	out.print("<td>");
 	out.print(result.getString("f.brand"));
+	out.print("</td>");
+	out.print("<td>");
+	out.print(result.getString("f.screen_size"));
+	out.print("</td>");
+	out.print("<td>");
+	out.print(result.getString("f.storage_size"));
 	out.print("</td>");
 	out.print("<td>");
 	out.print(result.getString("i.current_price"));
@@ -151,6 +163,12 @@
 	out.print(result.getString("f.brand"));
 	out.print("</td>");
 	out.print("<td>");
+	out.print(result.getString("f.screen_size"));
+	out.print("</td>");
+	out.print("<td>");
+	out.print(result.getString("f.storage_size"));
+	out.print("</td>");
+	out.print("<td>");
 	out.print(result.getString("i.current_price"));
 	out.print("</td>");
 	out.print("<td>");
@@ -163,7 +181,6 @@
 		out.print("Expired");
 	}
 	else{
-	out.print("<td>");
 	%><form action="bid.jsp" method="post">
 		<input type="hidden" name="itemID"
 			value=<%=result.getString("itemID")%> /> <input type="submit"
